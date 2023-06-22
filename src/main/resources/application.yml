@@ -3,7 +3,7 @@ spring:
     default: local
 
   datasource:
-    url: jdbc:h2:mem://localhost/~/cafeKioskApplication #jdbc:h2:mem:~/cafeKioskApplication #jdbc:h2:tcp://localhost/~/cafeKioskApplication
+    url: jdbc:h2:mem:~/cafeKioskApplication
     driver-class-name: org.h2.Driver
     username: sa
     password:
