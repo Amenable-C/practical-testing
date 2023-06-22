@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import sample.cafekiosk.spring.domain.order.Order;
 import sample.cafekiosk.spring.domain.order.OrderRepository;
@@ -29,9 +29,8 @@ public class OrderService {
 
     /**
      * 재고 감소 -> 동시성 고민
-     *
      */
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         List<Product> products = findProductsBy(productNumbers);
 
@@ -49,11 +48,11 @@ public class OrderService {
         Map<String, Stock> stockMap = createStockMapBy(stockProductNumbers);
         Map<String, Long> productCountingMap = createCountingMapBy(stockProductNumbers);
 
-        for(String stockProductNumber : new HashSet<>(stockProductNumbers)) {
+        for (String stockProductNumber : new HashSet<>(stockProductNumbers)) {
             Stock stock = stockMap.get(stockProductNumber);
             int quantity = productCountingMap.get(stockProductNumber).intValue();
 
-            if(stock.isQuantityLessThan(quantity)) {
+            if (stock.isQuantityLessThan(quantity)) {
                 throw new IllegalArgumentException("재고가 부족한 상품이 있습니다.");
             }
             stock.deductQuantity(quantity);
