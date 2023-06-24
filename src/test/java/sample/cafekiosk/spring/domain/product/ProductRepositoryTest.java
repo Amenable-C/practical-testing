@@ -32,11 +32,11 @@ class ProductRepositoryTest extends IntegrationTestSupport {
 
         // then
         assertThat(products).hasSize(2)
-                .extracting("productNumber", "name", "sellingStatus")
-                .containsExactlyInAnyOrder(
-                        tuple("001", "아메리카노", SELLING),
-                        tuple("002", "카페라떼", HOLD)
-                );
+            .extracting("productNumber", "name", "sellingStatus")
+            .containsExactlyInAnyOrder(
+                tuple("001", "아메리카노", SELLING),
+                tuple("002", "카페라떼", HOLD)
+            );
     }
 
     @DisplayName("상품번호 리스트로 상품들을 조회한다.")
@@ -53,11 +53,11 @@ class ProductRepositoryTest extends IntegrationTestSupport {
 
         // then
         assertThat(products).hasSize(2)
-                .extracting("productNumber", "name", "sellingStatus")
-                .containsExactlyInAnyOrder(
-                        tuple("001", "아메리카노", SELLING),
-                        tuple("002", "카페라떼", HOLD)
-                );
+            .extracting("productNumber", "name", "sellingStatus")
+            .containsExactlyInAnyOrder(
+                tuple("001", "아메리카노", SELLING),
+                tuple("002", "카페라떼", HOLD)
+            );
     }
 
     @DisplayName("가장 마지막으로 저장한 상품의 상품번호를 읽어온다.")
@@ -88,14 +88,15 @@ class ProductRepositoryTest extends IntegrationTestSupport {
         assertThat(latestProductNumber).isNull();
     }
 
-    private Product createProduct(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+    private Product createProduct(String productNumber, ProductType type, ProductSellingStatus sellingStatus,
+                                  String name, int price) {
         return Product.builder()
-                .productNumber(productNumber)
-                .type(type)
-                .sellingStatus(sellingStatus)
-                .name(name)
-                .price(price)
-                .build();
+            .productNumber(productNumber)
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price)
+            .build();
     }
 
 }

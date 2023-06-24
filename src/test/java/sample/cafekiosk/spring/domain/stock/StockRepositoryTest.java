@@ -30,10 +30,10 @@ class StockRepositoryTest extends IntegrationTestSupport {
 
         // then
         assertThat(stocks).hasSize(2)
-                .extracting("productNumber", "quantity")
-                .containsExactlyInAnyOrder(
-                        tuple("001", 1),
-                        tuple("002", 2)
-                );
+            .extracting("productNumber", "quantity")
+            .containsExactlyInAnyOrder(
+                tuple("001", 1),
+                tuple("002", 2)
+            );
     }
 }

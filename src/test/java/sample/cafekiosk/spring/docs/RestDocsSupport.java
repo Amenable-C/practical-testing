@@ -17,8 +17,8 @@ public abstract class RestDocsSupport {
     @BeforeEach
     void setUp(RestDocumentationContextProvider provider) {
         this.mockMvc = MockMvcBuilders.standaloneSetup(initController())
-                .apply(documentationConfiguration(provider))
-                .build();
+            .apply(documentationConfiguration(provider))
+            .build();
     }
 
     protected abstract Object initController();

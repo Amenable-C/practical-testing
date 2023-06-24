@@ -18,20 +18,20 @@ public class OrderStatisticsService {
 
     public boolean sendOrderStatisticsMail(LocalDate orderDate, String email) {
         List<Order> orders = orderRepository.findOrdersBy(
-                orderDate.atStartOfDay(),
-                orderDate.plusDays(1).atStartOfDay(),
-                OrderStatus.PAYMENT_COMPLETED
+            orderDate.atStartOfDay(),
+            orderDate.plusDays(1).atStartOfDay(),
+            OrderStatus.PAYMENT_COMPLETED
         );
 
         int totalAmount = orders.stream()
-                .mapToInt(Order::getTotalPrice)
-                .sum();
+            .mapToInt(Order::getTotalPrice)
+            .sum();
 
         boolean result = mailService.sendMail(
-                "no-reply@cafekiosk.com",
-                email,
-                String.format("[매출통계] %s", orderDate),
-                String.format("총 매출 합계는 %s원입니다.", totalAmount)
+            "no-reply@cafekiosk.com",
+            email,
+            String.format("[매출통계] %s", orderDate),
+            String.format("총 매출 합계는 %s원입니다.", totalAmount)
         );
 
         if (!result) {

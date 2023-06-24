@@ -20,7 +20,7 @@ public class ProductCreateRequest {
     @NotNull(message = "상품 판매상태는 필수입니다.")
     private ProductSellingStatus sellingStatus;
 
-//    @NotNull @NotEmpty
+    //    @NotNull @NotEmpty
     @NotBlank(message = "상품 이름은 필수입니다.")
     private String name;
 
@@ -37,10 +37,10 @@ public class ProductCreateRequest {
 
     public ProductCreateServiceRequest toServiceRequest() {
         return ProductCreateServiceRequest.builder()
-                .type(type)
-                .sellingStatus(sellingStatus)
-                .name(name)
-                .price(price)
-                .build();
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price)
+            .build();
     }
 }

@@ -23,8 +23,7 @@ class CafeKioskTest {
     }
 
     /**
-     * 1. 명사의 나열보다는 문장으로 작성하는게 좋음
-     * 2. 테스트 행위에 대한 결과까지 서술하기
+     * 1. 명사의 나열보다는 문장으로 작성하는게 좋음 2. 테스트 행위에 대한 결과까지 서술하기
      */
 //    @DisplayName("음료 1개 추가 테스트")
     @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
@@ -55,8 +54,8 @@ class CafeKioskTest {
         Americano americano = new Americano();
 
         assertThatThrownBy(() -> cafeKiosk.add(americano, 0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("음료는 1잔 이상 주문하실 수 있습니다.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("음료는 1잔 이상 주문하실 수 있습니다.");
     }
 
     @Test
@@ -129,9 +128,7 @@ class CafeKioskTest {
     }
 
     /**
-     * 1. 도메인 용어를 사용하여 한층 추상화된 내용을 담기
-     * (메서드 자체의 관점보다 도메인 정책 관점으로 표기하는 것)
-     * 2. 테스트의 현상(ex. 실패한다)을 중점으로 기술하지 말 것
+     * 1. 도메인 용어를 사용하여 한층 추상화된 내용을 담기 (메서드 자체의 관점보다 도메인 정책 관점으로 표기하는 것) 2. 테스트의 현상(ex. 실패한다)을 중점으로 기술하지 말 것
      */
 //    @DisplayName("특정 시간 이전에 주문을 생성하면 실패한다.")
     @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다.")
@@ -142,7 +139,7 @@ class CafeKioskTest {
         cafeKiosk.add(americano);
 
         assertThatThrownBy(() -> cafeKiosk.createOrder(LocalDateTime.of(2023, 6, 20, 9, 59)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("주문 시간이 아닙니다. 관리자에게 문의하세요.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("주문 시간이 아닙니다. 관리자에게 문의하세요.");
     }
 }

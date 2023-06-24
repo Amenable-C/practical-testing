@@ -68,7 +68,7 @@ class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
         // stubbing
         when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
-                .thenReturn(true);
+            .thenReturn(true);
 
         // when
         boolean result = orderStatisticsService.sendOrderStatisticsMail(LocalDate.of(2023, 3, 5), "test@test.com");
@@ -78,26 +78,26 @@ class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
         List<MailSendHistory> histories = mailSendHistoryRepository.findAll();
         assertThat(histories).hasSize(1)
-                .extracting("content")
-                .contains("총 매출 합계는 12000원입니다.");
+            .extracting("content")
+            .contains("총 매출 합계는 12000원입니다.");
     }
 
     private Order createPaymentCompletedOrder(LocalDateTime now, List<Product> products) {
         Order order = Order.builder()
-                .products(products)
-                .orderStatus(OrderStatus.PAYMENT_COMPLETED)
-                .registeredDateTime(now)
-                .build();
+            .products(products)
+            .orderStatus(OrderStatus.PAYMENT_COMPLETED)
+            .registeredDateTime(now)
+            .build();
         return orderRepository.save(order);
     }
 
     private Product createProduct(ProductType type, String productNumber, int price) {
         return Product.builder()
-                .type(type)
-                .productNumber(productNumber)
-                .price(price)
-                .sellingStatus(SELLING)
-                .name("메뉴 이름")
-                .build();
+            .type(type)
+            .productNumber(productNumber)
+            .price(price)
+            .sellingStatus(SELLING)
+            .name("메뉴 이름")
+            .build();
     }
 }

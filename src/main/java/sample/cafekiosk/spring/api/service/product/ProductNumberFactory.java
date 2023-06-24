@@ -12,7 +12,7 @@ public class ProductNumberFactory {
 
     public String createNextProductNumber() {
         String latestProductNumber = productRepository.findLatestProductNumber();
-        if(latestProductNumber == null) {
+        if (latestProductNumber == null) {
             return "001";
         }
 

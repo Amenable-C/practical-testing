@@ -63,8 +63,8 @@ class OrderServiceTest extends IntegrationTestSupport {
         productRepository.saveAll(List.of(product1, product2, product3));
 
         OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
-                .productNumbers(List.of("001", "002"))
-                .build();
+            .productNumbers(List.of("001", "002"))
+            .build();
 
         // when
         OrderResponse orderResponse = orderService.createOrder(request, registeredDateTime);
@@ -72,14 +72,14 @@ class OrderServiceTest extends IntegrationTestSupport {
         // then
         assertThat(orderResponse.getId()).isNotNull();
         assertThat(orderResponse)
-                .extracting("registeredDateTime", "totalPrice")
-                .contains(registeredDateTime, 4000);
+            .extracting("registeredDateTime", "totalPrice")
+            .contains(registeredDateTime, 4000);
         assertThat(orderResponse.getProducts()).hasSize(2)
-                .extracting("productNumber", "price")
-                .containsExactlyInAnyOrder(
-                        tuple("001", 1000),
-                        tuple("002", 3000)
-                );
+            .extracting("productNumber", "price")
+            .containsExactlyInAnyOrder(
+                tuple("001", 1000),
+                tuple("002", 3000)
+            );
     }
 
     @DisplayName("중복되는 상품번호 리스트로 주문을 생성할 수 있다.")
@@ -94,8 +94,8 @@ class OrderServiceTest extends IntegrationTestSupport {
         productRepository.saveAll(List.of(product1, product2, product3));
 
         OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
-                .productNumbers(List.of("001", "001"))
-                .build();
+            .productNumbers(List.of("001", "001"))
+            .build();
 
         // when
         OrderResponse orderResponse = orderService.createOrder(request, registeredDateTime);
@@ -103,14 +103,14 @@ class OrderServiceTest extends IntegrationTestSupport {
         // then
         assertThat(orderResponse.getId()).isNotNull();
         assertThat(orderResponse)
-                .extracting("registeredDateTime", "totalPrice")
-                .contains(registeredDateTime, 2000);
+            .extracting("registeredDateTime", "totalPrice")
+            .contains(registeredDateTime, 2000);
         assertThat(orderResponse.getProducts()).hasSize(2)
-                .extracting("productNumber", "price")
-                .containsExactlyInAnyOrder(
-                        tuple("001", 1000),
-                        tuple("001", 1000)
-                );
+            .extracting("productNumber", "price")
+            .containsExactlyInAnyOrder(
+                tuple("001", 1000),
+                tuple("001", 1000)
+            );
     }
 
     @DisplayName("재고와 관련된 상품이 포함되어 있는 주문번호 리스트를 받아 주문을 생성한다.")
@@ -129,8 +129,8 @@ class OrderServiceTest extends IntegrationTestSupport {
         stockRepository.saveAll(List.of(stock1, stock2));
 
         OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
-                .productNumbers(List.of("001", "001", "002", "003"))
-                .build();
+            .productNumbers(List.of("001", "001", "002", "003"))
+            .build();
 
         // when
         OrderResponse orderResponse = orderService.createOrder(request, registeredDateTime);
@@ -138,24 +138,24 @@ class OrderServiceTest extends IntegrationTestSupport {
         // then
         assertThat(orderResponse.getId()).isNotNull();
         assertThat(orderResponse)
-                .extracting("registeredDateTime", "totalPrice")
-                .contains(registeredDateTime, 10000);
+            .extracting("registeredDateTime", "totalPrice")
+            .contains(registeredDateTime, 10000);
         assertThat(orderResponse.getProducts()).hasSize(4)
-                .extracting("productNumber", "price")
-                .containsExactlyInAnyOrder(
-                        tuple("001", 1000),
-                        tuple("001", 1000),
-                        tuple("002", 3000),
-                        tuple("003", 5000)
-                );
+            .extracting("productNumber", "price")
+            .containsExactlyInAnyOrder(
+                tuple("001", 1000),
+                tuple("001", 1000),
+                tuple("002", 3000),
+                tuple("003", 5000)
+            );
 
         List<Stock> stocks = stockRepository.findAll();
         assertThat(stocks).hasSize(2)
-                .extracting("productNumber", "quantity")
-                .containsExactlyInAnyOrder(
-                        tuple("001", 0),
-                        tuple("002", 1)
-                );
+            .extracting("productNumber", "quantity")
+            .containsExactlyInAnyOrder(
+                tuple("001", 0),
+                tuple("002", 1)
+            );
     }
 
     @DisplayName("재고가 부족한 상품으로 주문을 생성하려는 경우 예외가 발생한다.")
@@ -175,22 +175,22 @@ class OrderServiceTest extends IntegrationTestSupport {
         stockRepository.saveAll(List.of(stock1, stock2));
 
         OrderCreateServiceRequest request = OrderCreateServiceRequest.builder()
-                .productNumbers(List.of("001", "001", "002", "003"))
-                .build();
+            .productNumbers(List.of("001", "001", "002", "003"))
+            .build();
 
         // when // then
         assertThatThrownBy(() -> orderService.createOrder(request, registeredDateTime))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("재고가 부족한 상품이 있습니다.");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("재고가 부족한 상품이 있습니다.");
     }
 
     private Product createProduct(ProductType type, String productNumber, int price) {
         return Product.builder()
-                .type(type)
-                .productNumber(productNumber)
-                .price(price)
-                .sellingStatus(SELLING)
-                .name("메뉴 이름")
-                .build();
+            .type(type)
+            .productNumber(productNumber)
+            .price(price)
+            .sellingStatus(SELLING)
+            .name("메뉴 이름")
+            .build();
     }
 }

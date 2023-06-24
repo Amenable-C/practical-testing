@@ -29,11 +29,11 @@ public class ProductCreateServiceRequest {
 
     public Product toEntity(String nextProductNumber) {
         return Product.builder()
-                .productNumber(nextProductNumber)
-                .type(type)
-                .sellingStatus(sellingStatus)
-                .name(name)
-                .price(price)
-                .build();
+            .productNumber(nextProductNumber)
+            .type(type)
+            .sellingStatus(sellingStatus)
+            .name(name)
+            .price(price)
+            .build();
     }
 }

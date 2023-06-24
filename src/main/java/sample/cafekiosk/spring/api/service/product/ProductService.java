@@ -12,10 +12,8 @@ import sample.cafekiosk.spring.domain.product.ProductRepository;
 import sample.cafekiosk.spring.domain.product.ProductSellingStatus;
 
 /**
- * readOnly = true : 읽기전용
- * CRUD 에서 CUD 동작 X / only Read만 가능
- * JPA : CUD 스냅샷 저장 X, 변경감지 X (성능 향상)
- *
+ * readOnly = true : 읽기전용 CRUD 에서 CUD 동작 X / only Read만 가능 JPA : CUD 스냅샷 저장 X, 변경감지 X (성능 향상)
+ * <p>
  * CQRS - Command / Query
  */
 @Transactional(readOnly = true)
@@ -41,7 +39,7 @@ public class ProductService {
         List<Product> products = productRepository.findAllBySellingStatusIn(ProductSellingStatus.forDisplay());
 
         return products.stream()
-                .map(product -> ProductResponse.of(product))
-                .collect(Collectors.toList());
+            .map(product -> ProductResponse.of(product))
+            .collect(Collectors.toList());
     }
 }

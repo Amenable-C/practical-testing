@@ -20,7 +20,7 @@ import sample.cafekiosk.spring.domain.history.mail.MailSendHistoryRepository;
 @ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-//    @Spy
+    //    @Spy
     @Mock
     private MailSendClient mailSendClient;
 
@@ -37,14 +37,12 @@ class MailServiceTest {
 //        Mockito.when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
 //                .thenReturn(true);
         BDDMockito.given(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))
-                .willReturn(true);
+            .willReturn(true);
 
         // @Spy를 쓰는 경우
 //        doReturn(true)
 //                .when(mailSendClient)
 //                .sendEmail(anyString(), anyString(), anyString(), anyString());
-
-
 
         // when
         boolean result = mailService.sendMail("", "", "", "");

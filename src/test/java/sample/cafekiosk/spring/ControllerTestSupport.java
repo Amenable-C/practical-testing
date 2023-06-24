@@ -11,8 +11,8 @@ import sample.cafekiosk.spring.api.service.order.OrderService;
 import sample.cafekiosk.spring.api.service.product.ProductService;
 
 @WebMvcTest(controllers = {
-        OrderController.class,
-        ProductController.class
+    OrderController.class,
+    ProductController.class
 })
 public abstract class ControllerTestSupport {
 

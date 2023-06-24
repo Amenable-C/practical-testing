@@ -47,21 +47,21 @@ public class Order extends BaseEntity {
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         this.orderProducts = products.stream()
-                .map(product -> new OrderProduct(this, product))
-                .collect(Collectors.toList());
+            .map(product -> new OrderProduct(this, product))
+            .collect(Collectors.toList());
     }
 
     public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
-         return Order.builder()
-                 .orderStatus(OrderStatus.INIT)
-                 .products(products)
-                 .registeredDateTime(registeredDateTime)
-                 .build();
+        return Order.builder()
+            .orderStatus(OrderStatus.INIT)
+            .products(products)
+            .registeredDateTime(registeredDateTime)
+            .build();
     }
 
     private int calculateTotalPrice(List<Product> products) {
         return products.stream()
-                .mapToInt(Product::getPrice)
-                .sum();
+            .mapToInt(Product::getPrice)
+            .sum();
     }
 }

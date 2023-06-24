@@ -17,8 +17,8 @@ class OrderTest {
     void calculateTotalPrice() {
         // given
         List<Product> products = List.of(
-                createProduct("001", 1000),
-                createProduct("002", 2000)
+            createProduct("001", 1000),
+            createProduct("002", 2000)
         );
 
         // when
@@ -33,8 +33,8 @@ class OrderTest {
     void init() {
         // given
         List<Product> products = List.of(
-                createProduct("001", 1000),
-                createProduct("002", 2000)
+            createProduct("001", 1000),
+            createProduct("002", 2000)
         );
 
         // when
@@ -50,8 +50,8 @@ class OrderTest {
         // given
         LocalDateTime registeredDateTime = LocalDateTime.now();
         List<Product> products = List.of(
-                createProduct("001", 1000),
-                createProduct("002", 2000)
+            createProduct("001", 1000),
+            createProduct("002", 2000)
         );
 
         // when
@@ -63,12 +63,12 @@ class OrderTest {
 
     private Product createProduct(String productNumber, int price) {
         return Product.builder()
-                .type(HANDMADE)
-                .productNumber(productNumber)
-                .price(price)
-                .sellingStatus(SELLING)
-                .name("메뉴 이름")
-                .build();
+            .type(HANDMADE)
+            .productNumber(productNumber)
+            .price(price)
+            .sellingStatus(SELLING)
+            .name("메뉴 이름")
+            .build();
     }
 
 }

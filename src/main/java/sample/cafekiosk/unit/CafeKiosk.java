@@ -21,11 +21,11 @@ public class CafeKiosk {
     }
 
     public void add(Beverage beverage, int count) {
-        if(count <= 0) {
+        if (count <= 0) {
             throw new IllegalArgumentException("음료는 1잔 이상 주문하실 수 있습니다.");
         }
 
-        for(int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             beverages.add(beverage);
         }
     }
@@ -40,14 +40,14 @@ public class CafeKiosk {
 
     public int calculateTotalPrice() {
         return beverages.stream()
-                .mapToInt(Beverage::getPrice)
-                .sum();
+            .mapToInt(Beverage::getPrice)
+            .sum();
     }
 
     public Order createOrder() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         LocalTime currentTime = currentDateTime.toLocalTime();
-        if(currentTime.isBefore(SHOP_OPEN_TIME) || currentTime.isAfter(SHOP_CLOSE_TIME)) {
+        if (currentTime.isBefore(SHOP_OPEN_TIME) || currentTime.isAfter(SHOP_CLOSE_TIME)) {
             throw new IllegalArgumentException("주문 시간이 아닙니다. 관리자에게 문의하세요.");
         }
 
@@ -56,7 +56,7 @@ public class CafeKiosk {
 
     public Order createOrder(LocalDateTime currentDateTime) {
         LocalTime currentTime = currentDateTime.toLocalTime();
-        if(currentTime.isBefore(SHOP_OPEN_TIME) || currentTime.isAfter(SHOP_CLOSE_TIME)) {
+        if (currentTime.isBefore(SHOP_OPEN_TIME) || currentTime.isAfter(SHOP_CLOSE_TIME)) {
             throw new IllegalArgumentException("주문 시간이 아닙니다. 관리자에게 문의하세요.");
         }
 

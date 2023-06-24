@@ -19,20 +19,20 @@ class OrderControllerTest extends ControllerTestSupport {
     void createOrder() throws Exception {
         // given
         OrderCreateRequest request = OrderCreateRequest.builder()
-                .productNumbers(List.of("001"))
-                .build();
+            .productNumbers(List.of("001"))
+            .build();
 
         // when // then
         mockMvc.perform(
                 post("/api/v1/orders/new")
-                        .content(objectMapper.writeValueAsString(request))
-                        .contentType(MediaType.APPLICATION_JSON)
-        )
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("200"))
-                .andExpect(jsonPath("$.status").value("OK"))
-                .andExpect(jsonPath("$.message").value("OK"))
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.code").value("200"))
+            .andExpect(jsonPath("$.status").value("OK"))
+            .andExpect(jsonPath("$.message").value("OK"))
         ;
     }
 
@@ -41,21 +41,21 @@ class OrderControllerTest extends ControllerTestSupport {
     void createOrderWithEmptyProductNumbers() throws Exception {
         // given
         OrderCreateRequest request = OrderCreateRequest.builder()
-                .productNumbers(List.of())
-                .build();
+            .productNumbers(List.of())
+            .build();
 
         // when // then
         mockMvc.perform(
-                        post("/api/v1/orders/new")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value("상품 번호 리스트는 필수입니다."))
-                .andExpect(jsonPath("$.data").isEmpty())
+                post("/api/v1/orders/new")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value("400"))
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.message").value("상품 번호 리스트는 필수입니다."))
+            .andExpect(jsonPath("$.data").isEmpty())
         ;
     }
 

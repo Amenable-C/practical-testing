@@ -22,11 +22,11 @@ class ProductControllerTest extends ControllerTestSupport {
     void createProduct() throws Exception {
         // given
         ProductCreateRequest request = ProductCreateRequest.builder()
-                .type(ProductType.HANDMADE)
-                .sellingStatus(ProductSellingStatus.SELLING)
-                .name("아메리카노")
-                .price(4000)
-                .build();
+            .type(ProductType.HANDMADE)
+            .sellingStatus(ProductSellingStatus.SELLING)
+            .name("아메리카노")
+            .price(4000)
+            .build();
 
         // when // then
         mockMvc.perform(
@@ -43,23 +43,23 @@ class ProductControllerTest extends ControllerTestSupport {
     void createProductWithoutType() throws Exception {
         // given
         ProductCreateRequest request = ProductCreateRequest.builder()
-                .sellingStatus(ProductSellingStatus.SELLING)
-                .name("아메리카노")
-                .price(4000)
-                .build();
+            .sellingStatus(ProductSellingStatus.SELLING)
+            .name("아메리카노")
+            .price(4000)
+            .build();
 
         // when // then
         mockMvc.perform(
-                        post("/api/v1/products/new")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value("상품 타입은 필수입니다."))
-                .andExpect(jsonPath("$.data").isEmpty())
+                post("/api/v1/products/new")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value("400"))
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.message").value("상품 타입은 필수입니다."))
+            .andExpect(jsonPath("$.data").isEmpty())
         ;
     }
 
@@ -68,23 +68,23 @@ class ProductControllerTest extends ControllerTestSupport {
     void createProductWithoutSellingStatus() throws Exception {
         // given
         ProductCreateRequest request = ProductCreateRequest.builder()
-                .type(ProductType.HANDMADE)
-                .name("아메리카노")
-                .price(4000)
-                .build();
+            .type(ProductType.HANDMADE)
+            .name("아메리카노")
+            .price(4000)
+            .build();
 
         // when // then
         mockMvc.perform(
-                        post("/api/v1/products/new")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value("상품 판매상태는 필수입니다."))
-                .andExpect(jsonPath("$.data").isEmpty())
+                post("/api/v1/products/new")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value("400"))
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.message").value("상품 판매상태는 필수입니다."))
+            .andExpect(jsonPath("$.data").isEmpty())
         ;
     }
 
@@ -93,23 +93,23 @@ class ProductControllerTest extends ControllerTestSupport {
     void createProductWithoutName() throws Exception {
         // given
         ProductCreateRequest request = ProductCreateRequest.builder()
-                .type(ProductType.HANDMADE)
-                .sellingStatus(ProductSellingStatus.SELLING)
-                .price(4000)
-                .build();
+            .type(ProductType.HANDMADE)
+            .sellingStatus(ProductSellingStatus.SELLING)
+            .price(4000)
+            .build();
 
         // when // then
         mockMvc.perform(
-                        post("/api/v1/products/new")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value("상품 이름은 필수입니다."))
-                .andExpect(jsonPath("$.data").isEmpty())
+                post("/api/v1/products/new")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value("400"))
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.message").value("상품 이름은 필수입니다."))
+            .andExpect(jsonPath("$.data").isEmpty())
         ;
     }
 
@@ -118,24 +118,24 @@ class ProductControllerTest extends ControllerTestSupport {
     void createProductWithZeroPrice() throws Exception {
         // given
         ProductCreateRequest request = ProductCreateRequest.builder()
-                .type(ProductType.HANDMADE)
-                .sellingStatus(ProductSellingStatus.SELLING)
-                .name("아메리카노")
-                .price(0)
-                .build();
+            .type(ProductType.HANDMADE)
+            .sellingStatus(ProductSellingStatus.SELLING)
+            .name("아메리카노")
+            .price(0)
+            .build();
 
         // when // then
         mockMvc.perform(
-                        post("/api/v1/products/new")
-                                .content(objectMapper.writeValueAsString(request))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.code").value("400"))
-                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value("상품 가격은 양수여야 합니다."))
-                .andExpect(jsonPath("$.data").isEmpty())
+                post("/api/v1/products/new")
+                    .content(objectMapper.writeValueAsString(request))
+                    .contentType(MediaType.APPLICATION_JSON)
+            )
+            .andDo(print())
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.code").value("400"))
+            .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+            .andExpect(jsonPath("$.message").value("상품 가격은 양수여야 합니다."))
+            .andExpect(jsonPath("$.data").isEmpty())
         ;
     }
 
@@ -148,14 +148,14 @@ class ProductControllerTest extends ControllerTestSupport {
 
         // when // then
         mockMvc.perform(
-                        get("/api/v1/products/selling")
-                )
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("200"))
-                .andExpect(jsonPath("$.status").value("OK"))
-                .andExpect(jsonPath("$.message").value("OK"))
-                .andExpect(jsonPath("$.data").isArray())
+                get("/api/v1/products/selling")
+            )
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.code").value("200"))
+            .andExpect(jsonPath("$.status").value("OK"))
+            .andExpect(jsonPath("$.message").value("OK"))
+            .andExpect(jsonPath("$.data").isArray())
         ;
     }
 }

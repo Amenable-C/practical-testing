@@ -27,13 +27,13 @@ public class OrderResponse {
 
     public static OrderResponse of(Order order) {
         return OrderResponse.builder()
-                .id(order.getId())
-                .totalPrice(order.getTotalPrice())
-                .registeredDateTime(order.getRegisteredDateTime())
-                .products(order.getOrderProducts().stream()
-                        .map(orderProduct -> ProductResponse.of(orderProduct.getProduct()))
-                        .collect(Collectors.toList())
-                )
-                .build();
+            .id(order.getId())
+            .totalPrice(order.getTotalPrice())
+            .registeredDateTime(order.getRegisteredDateTime())
+            .products(order.getOrderProducts().stream()
+                .map(orderProduct -> ProductResponse.of(orderProduct.getProduct()))
+                .collect(Collectors.toList())
+            )
+            .build();
     }
 }

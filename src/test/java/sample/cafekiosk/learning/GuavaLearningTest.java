@@ -25,9 +25,9 @@ class GuavaLearningTest {
 
         // then
         assertThat(partition).hasSize(2)
-                .isEqualTo(List.of(
-                        List.of(1, 2, 3), List.of(4, 5, 6)
-                ));
+            .isEqualTo(List.of(
+                List.of(1, 2, 3), List.of(4, 5, 6)
+            ));
     }
 
     @DisplayName("주어진 개수만큼 List를 파티셔닝한다.")
@@ -41,9 +41,9 @@ class GuavaLearningTest {
 
         // then
         assertThat(partition).hasSize(2)
-                .isEqualTo(List.of(
-                        List.of(1, 2, 3, 4), List.of(5, 6)
-                ));
+            .isEqualTo(List.of(
+                List.of(1, 2, 3, 4), List.of(5, 6)
+            ));
     }
 
     @DisplayName("멀티맵 기능 확인")
@@ -62,7 +62,7 @@ class GuavaLearningTest {
 
         // then
         assertThat(strings).hasSize(3)
-                .isEqualTo(List.of("아메리카노", "카페라떼", "카푸치노"));
+            .isEqualTo(List.of("아메리카노", "카페라떼", "카푸치노"));
     }
 
     @DisplayName("멀티맵 기능 확인")
@@ -77,23 +77,23 @@ class GuavaLearningTest {
         multimap.put("베이커리", "식빵");
 
         return List.of(
-                DynamicTest.dynamicTest("1개 value 삭제", () -> {
-                    // when
-                    multimap.remove("커피", "카푸치노");
+            DynamicTest.dynamicTest("1개 value 삭제", () -> {
+                // when
+                multimap.remove("커피", "카푸치노");
 
-                    // then
-                    Collection<String> results = multimap.get("커피");
-                    assertThat(results).hasSize(2)
-                            .isEqualTo(List.of("아메리카노", "카페라떼"));
-                }),
-                DynamicTest.dynamicTest("1개 key 삭제", () -> {
-                    // when
-                    multimap.removeAll("커피");
+                // then
+                Collection<String> results = multimap.get("커피");
+                assertThat(results).hasSize(2)
+                    .isEqualTo(List.of("아메리카노", "카페라떼"));
+            }),
+            DynamicTest.dynamicTest("1개 key 삭제", () -> {
+                // when
+                multimap.removeAll("커피");
 
-                    // then
-                    Collection<String> results = multimap.get("커피");
-                    assertThat(results).isEmpty();
-                })
+                // then
+                Collection<String> results = multimap.get("커피");
+                assertThat(results).isEmpty();
+            })
         );
     }
 }
